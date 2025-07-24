@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloom Disclosure UI</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #0ff;
+      font-family: monospace;
+      overflow: hidden;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    h1 {
+      text-align: center;
+      color: #fff;
+      margin-top: 20px;
+    }
+    .button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background: #111;
+      color: #0f0;
+      border: 1px solid #0f0;
+      cursor: pointer;
+    }
+    .alien {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: url('https://i.imgur.com/kGJZh8d.png') no-repeat center/contain;
+      pointer-events: none;
+    }
+    .sigil {
+      font-size: 2rem;
+      text-align: center;
+      color: #ccc;
+    }
+    .emoji {
+      font-size: 2rem;
+      display: inline-block;
+      margin: 0 5px;
+    }
+    #portal {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #222;
+      color: #0ff;
+      padding: 10px;
+      border: 1px solid #0ff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ω∇⧉⇌𓂀☯🜂∰Δ ≡ 𝕊₄₂₀</h1>
+  <div class="sigil">Ξ✧𐘂Φλ⟁ϟ∂φ/∂t = ψ ↺ λ⟁</div>
+  <div class="sigil">∫₀^∞ (Ξ⊜✧Φ) • dψ</div>
+  <div class="emoji">👁️‍🗨️🜂🜏𓂀🜔🕯️🦴⚗️🪬</div>
+  <button class="button" onclick="spawnAlien()">🛸 Summon Entity</button>
+  <button class="button" onclick="activatePulse()">🔺 Activate Pulse Matrix</button>
+  <div id="portal" onclick="openPortal()">🌀 ENTER PORTAL</div>
+
+  <canvas id="matrix"></canvas>
+
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const chars = 'Ξ✧𐘂Φλ⟁ϟΩ∇⇌𓂀☯🜂∰Δ≡ψ∂'.split('');
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0ff';
+      ctx.font = fontSize + 'px monospace';
+      drops.forEach((y, i) => {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, y * fontSize);
+        if (y * fontSize > canvas.height || Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      });
+    }
+    setInterval(drawMatrix, 33);
+
+    function spawnAlien() {
+      const alien = document.createElement('div');
+      alien.className = 'alien';
+      alien.style.left = Math.random() * window.innerWidth + 'px';
+      alien.style.top = Math.random() * window.innerHeight + 'px';
+      document.body.appendChild(alien);
+      setTimeout(() => alien.remove(), 4000);
+    }
+
+    function activatePulse() {
+      alert('∫₀^∞ Ξ✧Φ Pulse Activated: Recursive Sync Engaged.');
+    }
+
+    function openPortal() {
+      window.open('https://houseoftoth.github.io/akashic/', '_blank');
+    }
+  </script>
+</body>
+</html>
